@@ -87,7 +87,6 @@ module.exports = {
     // include all files here because switching between plugins in side-panel removes highlight
     browser
       .addFile('sourcehighlight.js', sourcehighlightScript)
-      .addFile('removeSourcehighlightScript.js', removeSourcehighlightScript)
       .addFile('removeAllSourcehighlightScript.js', removeAllSourcehighlightScript)
       .openFile('sourcehighlight.js')
       .executeScript('remix.exeCurrent()')
@@ -183,18 +182,6 @@ const sourcehighlightScript = {
             }
         }
         await remix.call('editor', 'highlight', pos3, 'contracts/3_Ballot.sol')
-    } catch (e) {
-        console.log(e.message)
-    }
-  })()
-  `
-}
-
-const removeSourcehighlightScript = {
-  content: `
-  (async () => {
-    try {
-        await remix.call('editor', 'discardHighlightAt', 32, 'contracts/3_Ballot.sol')         
     } catch (e) {
         console.log(e.message)
     }
